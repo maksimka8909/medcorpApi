@@ -58,6 +58,8 @@ namespace HospitalAPI.Controllers
             return result;
         }
 
+
+
         [Route("[action]/{id}")]
         [HttpGet]
         public IEnumerable<object> Show(int id)
@@ -106,9 +108,9 @@ namespace HospitalAPI.Controllers
                           where user.IdUser == userView.IdUser
                           select user).FirstOrDefault();
 
-            result.Login = userView.Login;
-            result.Password = userView.Password;
-            result.IdRole = userView.IdRole;
+            result.Login = result.Login;
+            result.IdRole = result.IdRole;
+            result.Status = userView.Status;
 
             _context.SaveChanges();
         }

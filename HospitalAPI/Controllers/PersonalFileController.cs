@@ -41,7 +41,6 @@ namespace HospitalAPI.Controllers
                             Phonenumber = personalFile.Phonenumber,
                             Email = personalFile.Email,
                             Education = personalFile.Education,
-                            IdStatement = personalFile.IdStatement,
                             Requisites = personalFile.Requisites,
                             MilitaryId = personalFile.MilitaryId}).ToList();
             return result;
@@ -69,7 +68,34 @@ namespace HospitalAPI.Controllers
                               Phonenumber = personalFile.Phonenumber,
                               Email = personalFile.Email,
                               Education = personalFile.Education,
-                              IdStatement = personalFile.IdStatement,
+                              Requisites = personalFile.Requisites,
+                              MilitaryId = personalFile.MilitaryId
+                          }).ToList();
+            return result;
+        }
+
+        [Route("[action]/{surname}")]
+        [HttpGet]
+        public IEnumerable<object> Search(string surname)
+        {
+            var result = (from personalFile in _context.PersonalFiles
+                          where personalFile.Surname == surname
+                          select new
+                          {
+                              Id = personalFile.IdPersonalFile,
+                              Name = personalFile.Name,
+                              Surname = personalFile.Surname,
+                              MiddleName = personalFile.MiddleName,
+                              Gender = personalFile.Gender,
+                              Birthday = personalFile.Birthday,
+                              Inn = personalFile.Inn,
+                              Snils = personalFile.Snils,
+                              PassportSeries = personalFile.PassportSeries,
+                              PassportNumber = personalFile.PassportNumber,
+                              EmploymentHistory = personalFile.EmploymentHistory,
+                              Phonenumber = personalFile.Phonenumber,
+                              Email = personalFile.Email,
+                              Education = personalFile.Education,
                               Requisites = personalFile.Requisites,
                               MilitaryId = personalFile.MilitaryId
                           }).ToList();
@@ -131,7 +157,6 @@ namespace HospitalAPI.Controllers
             result.Phonenumber = personalFileView.Phonenumber;
             result.Email = personalFileView.Email;
             result.Education = personalFileView.Education;
-            result.IdStatement = personalFileView.IdStatement;
             result.Requisites = personalFileView.Requisites;
             result.MilitaryId = personalFileView.MilitaryId;
             _context.SaveChanges();

@@ -30,7 +30,7 @@ namespace HospitalAPI.Controllers
                               Name = equipment.Name,
                               Manufacturer = equipment.Manufacturer,
                               Description = equipment.Description,
-                              Provider = equipment.IdTypeOfEquipmentNavigation.Name,
+                              Type = equipment.IdTypeOfEquipmentNavigation.Name,
                               Number = equipment.Number
                           }).ToList();
             return result;
@@ -48,7 +48,7 @@ namespace HospitalAPI.Controllers
                               Name = equipment.Name,
                               Manufacturer = equipment.Manufacturer,
                               Description = equipment.Description,
-                              Provider = equipment.IdTypeOfEquipmentNavigation.Name,
+                              Type = equipment.IdTypeOfEquipmentNavigation.Name,
                               Number = equipment.Number
                           }).ToList();
             return result;

@@ -47,6 +47,20 @@ namespace HospitalAPI.Controllers
             return result;
         }
 
+        [Route("[action]/{name}")]
+        [HttpGet]
+        public IEnumerable<object> Search(string name)
+        {
+            var result = (from typeOfResearch in _context.TypeOfResearches
+                          where typeOfResearch.Name == name
+                          select new
+                          {
+                              Id = typeOfResearch.IdTypeOfResearch,
+                              Name = typeOfResearch.Name
+                          }).ToList();
+            return result;
+        }
+
         [Route("[action]")]
         [HttpPost]
         public void Add(TypeOfResearchView typeOfResearchView)

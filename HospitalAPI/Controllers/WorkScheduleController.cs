@@ -49,6 +49,21 @@ namespace HospitalAPI.Controllers
             return result;
         }
 
+        [Route("[action]/{name}")]
+        [HttpGet]
+        public IEnumerable<object> Search(string name)
+        {
+            var result = (from workSchedule in _context.WorkSchedules
+                          where workSchedule.Name == name
+                          select new
+                          {
+                              Id = workSchedule.IdWorkSchedule,
+                              Name = workSchedule.Name,
+                              TypeOfWorkSchedule = workSchedule.TypeOfWorkSchedule
+                          }).ToList();
+            return result;
+        }
+
         [Route("[action]")]
         [HttpPost]
         public void Add(WorkScheduleView workScheduleView)

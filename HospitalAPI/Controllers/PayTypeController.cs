@@ -49,6 +49,20 @@ namespace HospitalAPI.Controllers
             return result;
         }
 
+        [Route("[action]/{name}")]
+        [HttpGet]
+        public IEnumerable<object> Search(string name)
+        {
+            var result = (from paytype in _context.PayTypes
+                          where paytype.Name == name
+                          select new
+                          {
+                              Id = paytype.IdPayType,
+                              Name = paytype.Name
+                          }).ToList();
+            return result;
+        }
+
         [Route("[action]")]
         [HttpPost]
         public void Add(PayTypeView payTypeView)

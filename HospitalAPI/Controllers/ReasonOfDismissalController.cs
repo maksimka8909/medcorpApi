@@ -47,6 +47,20 @@ namespace HospitalAPI.Controllers
             return result;
         }
 
+        [Route("[action]/{name}")]
+        [HttpGet]
+        public IEnumerable<object> Search(string name)
+        {
+            var result = (from reasonOfDismissal in _context.ReasonOfDismissals
+                          where reasonOfDismissal.Name == name
+                          select new
+                          {
+                              Id = reasonOfDismissal.IdReasonOfDismissal,
+                              Name = reasonOfDismissal.Name
+                          }).ToList();
+            return result;
+        }
+
         [Route("[action]")]
         [HttpPost]
         public void Add(ReasonOfDismissalView reasonOfDismissalView)
